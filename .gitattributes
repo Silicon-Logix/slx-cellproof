@@ -1,0 +1,25 @@
+# Silicon LogiX / SLX CellProof
+# Copyright (c) 2026 Marco Pezzullo (Silicon LogiX).
+# Author: Marco Pezzullo
+# License: Silicon LogiX Evaluation License 1.0. See LICENSE.
+
+# Inventories hash exact bytes; preserve generated data and upstream notices.
+* -text
+*.gd text eol=lf
+*.py text eol=lf
+*.cpp text eol=lf
+*.hpp text eol=lf
+*.svg text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.ps1 text eol=lf
+*.cmd text eol=crlf
+*.glb binary
+*.blend binary
+*.png binary
+*.ico binary
+*.npz binary
+*.exe binary
+*.pck binary
+licenses/** -text
+SLX_CellProof_RoboticWorkcell_3D_v0.1/** -text

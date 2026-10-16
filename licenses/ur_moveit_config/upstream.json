@@ -1,0 +1,12 @@
+{
+  "upstream": "https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver",
+  "branch": "jazzy",
+  "commit": "f6997bd4a0eee8d58198b696caf034009ab4de1e",
+  "use": "Official robot-only SRDF disabled self collision pairs used by sampled geometry audit",
+  "files": {
+    "package.xml": "2aae737ba4cfdb99b3d0c19deb7bb60aa3f0e8c7517c9cf9afd2956f1ffa5cbe",
+    "UPSTREAM_README.md": "60f76ca64ca18fad1391fa2148beb6593cb8885825ab911496dc0d73a2e729a5",
+    "LICENSE": "143077f9f6a8de5a99f78c2c2472801fb53cf240277ef661642f079b9acdfff8",
+    "srdf/ur_macro.srdf.xacro": "c73b995bec386975ee838b32c72cd1a87b2a48e58defb9d47cad6270e53ed67d"
+  }
+}

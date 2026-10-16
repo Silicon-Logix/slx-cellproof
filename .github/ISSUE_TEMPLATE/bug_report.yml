@@ -1,0 +1,31 @@
+# Silicon LogiX / SLX CellProof
+# Copyright (c) 2026 Marco Pezzullo (Silicon LogiX).
+# Author: Marco Pezzullo
+# License: Silicon LogiX Evaluation License 1.0. See LICENSE.
+
+name: Bug report
+description: Report a reproducible CellProof issue.
+body:
+  - type: markdown
+    attributes:
+      value: 'Remove confidential recipes and installation information. Use the private contact in SECURITY.md for security reports.'
+  - type: input
+    id: version
+    attributes:
+      label: CellProof version
+      description: Find it in About or paste the copied system information below.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Describe the actions, expected behavior and actual result.
+    validations:
+      required: true
+  - type: textarea
+    id: system
+    attributes:
+      label: System information
+      description: Paste the About window system summary and relevant diagnostics.
+      render: text

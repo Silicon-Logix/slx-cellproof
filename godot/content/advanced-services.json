@@ -1,0 +1,57 @@
+{
+  "schema": "slx.cellproof.services/v1",
+  "author": "Marco Pezzullo (Silicon LogiX)",
+  "copyright": "Copyright (c) 2026 Marco Pezzullo (Silicon LogiX).",
+  "license": "Silicon LogiX Evaluation License 1.0. See LICENSE.",
+  "reviewed_on": "2026-10-16",
+  "services": [
+    {
+      "id": "calibrated-model",
+      "status": "on_request",
+      "title": "Calibrated workcell digital model",
+      "summary": "Replace nominal geometry with installation-specific robot, tooling, fixtures and coordinate frames.",
+      "requirements": "Cell CAD, robot factory calibration, measured base / TCP frames, payload and acceptance tolerances.",
+      "deliverable": "A versioned model and frame residual report checked against installation measurements. Accuracy is established during commissioning.",
+      "references": [{"label": "UR calibration reference", "url": "https://github.com/UniversalRobots/Universal_Robots_ROS2_Driver/blob/main/ur_calibration/README.md"}]
+    },
+    {
+      "id": "controller-recording",
+      "status": "on_request",
+      "title": "Controller traces and IO correlation",
+      "summary": "Extend Cycle Inspector to recorded controller telemetry with robot, CNC and PLC signal correlation.",
+      "requirements": "Controller versions, enabled RTDE, output recipes, PLC signal mapping, clock strategy and representative recordings.",
+      "deliverable": "A read-only recorder with controller timestamps, gap / stale-data indicators and measured acquisition quality; hardware traces stay distinct from simulated cycles.",
+      "references": [{"label": "Official RTDE guide", "url": "https://docs.universal-robots.com/tutorials/communication-protocol-tutorials/rtde-guide.html"}]
+    },
+    {
+      "id": "opcua-integration",
+      "status": "on_request",
+      "title": "OPC UA machine and robot integration",
+      "summary": "Connect machine status, alarms and job information through the companion models supported by the installation.",
+      "requirements": "OPC UA endpoints, supported namespaces, certificates, node inventory, vendor options and a read-only test environment.",
+      "deliverable": "A mapped monitoring adapter and interoperability tests for the agreed Machine Tools / Robotics subset. PLC interlock control requires a separate scope.",
+      "references": [
+        {"label": "Machine Tools specification", "url": "https://reference.opcfoundation.org/specs/OPC-40501-1/8.1"},
+        {"label": "Robotics specification", "url": "https://reference.opcfoundation.org/specs/OPC-40010-1"}
+      ]
+    },
+    {
+      "id": "trajectory-optimization",
+      "status": "on_request",
+      "title": "Motion planning and cycle optimization",
+      "summary": "Evaluate collision-aware paths and constrained trajectory timing using a scoped MoveIt 2 integration.",
+      "requirements": "Calibrated collision geometry, joint velocity / acceleration / jerk limits, tooling, payload and process constraints.",
+      "deliverable": "Benchmarked candidate paths, timing and collision rechecks after time parameterization; jerk smoothing where supported. Gains require measured validation.",
+      "references": [{"label": "MoveIt timing and Ruckig", "url": "https://moveit.picknik.ai/main/doc/examples/time_parameterization/time_parameterization_tutorial.html"}]
+    },
+    {
+      "id": "virtual-commissioning",
+      "status": "on_request",
+      "title": "Virtual commissioning and fault campaigns",
+      "summary": "Extend sequence regression to a Gazebo / ros2_control model and agreed PLC or controller test interfaces.",
+      "requirements": "URDF / SDF assets, controller and PLC interfaces, actuator behavior, interlocks, recovery rules and acceptance scenarios.",
+      "deliverable": "A versioned simulation environment with repeatable fault / recovery scenarios and explicit model limitations; installation acceptance remains a separate activity.",
+      "references": [{"label": "Gazebo / ros2_control reference", "url": "https://control.ros.org/jazzy/doc/gz_ros2_control/doc/index.html"}]
+    }
+  ]
+}

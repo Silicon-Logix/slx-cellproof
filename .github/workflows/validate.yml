@@ -1,0 +1,54 @@
+# Silicon LogiX / SLX CellProof
+# Copyright (c) 2026 Marco Pezzullo (Silicon LogiX).
+# Author: Marco Pezzullo
+# License: Silicon LogiX Evaluation License 1.0. See LICENSE.
+
+name: Validate CellProof
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Check source inventory and attribution
+        run: python scripts/audit_publication.py --public
+      - name: Prepare pinned Godot runtime
+        shell: pwsh
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP 'cellproof-godot.zip'
+          $folder = Join-Path $env:RUNNER_TEMP 'cellproof-godot'
+          Invoke-WebRequest -Uri 'https://github.com/godotengine/godot-builds/releases/download/4.5.2-stable/Godot_v4.5.2-stable_win64.exe.zip' -OutFile $archive
+          if ((Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant() -ne '3766090865330ab2a0ed33594520394b711c620b1378f9223904faeef60f2f14') { throw 'Godot download hash mismatch' }
+          Expand-Archive -LiteralPath $archive -DestinationPath $folder
+          "CELLPROOF_GODOT=$folder/Godot_v4.5.2-stable_win64_console.exe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Import the interface
+        shell: pwsh
+        run: |
+          & $env:CELLPROOF_GODOT --headless --editor --path godot --import
+          if ($LASTEXITCODE -ne 0) { throw 'Godot import failed' }
+      - name: Verify product identity, help and Cycle Inspector
+        shell: pwsh
+        run: |
+          & $env:CELLPROOF_GODOT --headless --path godot --script ../tests/public_smoke.gd
+          if ($LASTEXITCODE -ne 0) { throw 'CellProof product smoke test failed' }
+      - name: Verify project durability, desktop interaction and update policy
+        shell: pwsh
+        run: |
+          foreach ($script in @('projects_workflow.gd', 'ui_workflow.gd', 'update_workflow.gd')) {
+            & $env:CELLPROOF_GODOT --headless --path godot --script "../tests/$script"
+            if ($LASTEXITCODE -ne 0) { throw "CellProof workflow failed: $script" }
+          }

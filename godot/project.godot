@@ -1,0 +1,31 @@
+; Silicon LogiX / SLX CellProof
+; Copyright (c) 2026 Marco Pezzullo (Silicon LogiX).
+; Author: Marco Pezzullo
+; License: Silicon LogiX Evaluation License 1.0. See LICENSE.
+
+config_version=5
+
+[application]
+config/name="SLX CellProof"
+config/version="0.5.0"
+config/release_channel="development-preview"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.5", "GL Compatibility")
+config/description="Programming and change verification for a demonstration robot-CNC workcell"
+config/icon="res://assets/cellproof.svg"
+config/windows_native_icon="res://assets/cellproof.ico"
+
+[display]
+window/size/viewport_width=1560
+window/size/viewport_height=960
+window/size/window_width_override=1440
+window/size/window_height_override=900
+window/size/min_width=1200
+window/size/min_height=760
+window/stretch/mode="canvas_items"
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+anti_aliasing/quality/msaa_3d=2
+environment/defaults/default_clear_color=Color(0.953,0.961,0.976,1)

@@ -1,0 +1,22 @@
+# Silicon LogiX / SLX CellProof
+# Copyright (c) 2026 Marco Pezzullo (Silicon LogiX).
+# Author: Marco Pezzullo
+# License: Silicon LogiX Evaluation License 1.0. See LICENSE.
+
+name: Feature request
+description: Suggest a CellProof workflow improvement.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem should this solve?
+      description: Describe your workflow without sharing confidential installation data.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain the expected interaction or outcome.
+    validations:
+      required: true

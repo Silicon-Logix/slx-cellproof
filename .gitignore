@@ -1,0 +1,79 @@
+# Silicon LogiX / SLX CellProof
+# Copyright (c) 2026 Marco Pezzullo (Silicon LogiX).
+# Author: Marco Pezzullo
+# License: Silicon LogiX Evaluation License 1.0. See LICENSE.
+
+# Local outputs and user data.
+/build/
+/dist/
+/workspace/
+/reports/
+/recipes/
+/captures/
+/logs/
+**/.godot/
+**/__pycache__/
+*.py[cod]
+*.gd.uid
+*.import
+/godot/assets/workcell_*.png
+
+# Tooling, temporary files and desktop state.
+.vs/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.user
+*.suo
+*.log
+*.tmp
+*.bak
+*.swp
+*.orig
+*.rej
+
+# Credentials, symbols and compilation artifacts.
+.env
+.env.*
+*.pem
+*.key
+*.secret
+*.pfx
+*.p12
+*.pdb
+*.ilk
+*.debug
+*.dmp
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.exe
+*.pck
+*.zip
+*.blend
+*.blend[0-9]
+!bin/slx-cellproof-core.exe
+!licenses/gcc/COPYING.LIB
+!licenses/gcc/COPYING3.LIB
+!licenses/mingw-w64/direct-x-COPYING.lib
+
+# Development-only material is never part of the public source bundle.
+# Cycle recordings can contain user programs and notes.
+/recordings/
+/captures/
+cellproof-cycle*.json
+cellproof-cycle*.csv
+*.cycle.json
+*.cycle.csv
+*.cellproof
+*.cellproof.backup
+*.pending-*
+/private/
+/docs/internal/
+/SLX_CellProof_RoboticWorkcell_3D_v0.1/

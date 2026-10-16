@@ -1,0 +1,48 @@
+# Silicon LogiX / SLX CellProof
+# Copyright (c) 2026 Marco Pezzullo (Silicon LogiX).
+# Author: Marco Pezzullo
+# License: Silicon LogiX Evaluation License 1.0. See LICENSE.
+
+# SLX CellProof: nominal simulation, metres/radians, no physical robot commands.
+CNC DOOR OPEN
+WAIT machine_ready 1 TIMEOUT 2
+PTP feed_high
+LIN feed_approach
+LIN feed_pick
+GRIP CLOSE
+WAIT grip_confirmed 1 TIMEOUT 1.5
+LIN feed_approach
+PTP home
+PTP cnc_high
+LIN cnc_outside
+LIN cnc_inside
+LIN cnc_load
+GRIP OPEN
+CNC CLAMP
+LIN cnc_inside
+LIN cnc_outside
+PTP cnc_high
+CNC DOOR CLOSE
+CNC CYCLE 3
+CNC DOOR OPEN
+LIN cnc_outside
+LIN cnc_inside
+LIN cnc_load
+CNC UNCLAMP
+GRIP CLOSE
+LIN cnc_inside
+LIN cnc_outside
+PTP cnc_high
+PTP home
+LIN metrology_high
+LIN metrology_approach
+LIN metrology_measure
+MEASURE
+LIN metrology_approach
+LIN home
+PTP output_high
+LIN output_approach
+LIN output_place
+GRIP OPEN
+LIN output_approach
+PTP home
